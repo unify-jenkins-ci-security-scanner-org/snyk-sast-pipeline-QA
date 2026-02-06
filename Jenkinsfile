@@ -8,9 +8,9 @@ pipeline {
     VENV_DIR = "${env.WORKSPACE}/venv"
   }
   
-  triggers {
-        cron '00 01 * * 1-5' // Runs at 01:00 on every day-of-week from Monday through Friday
-    }
+  // triggers {
+  //       cron '00 01 * * 1-5' // Runs at 01:00 on every day-of-week from Monday through Friday
+  //   }
 
   stages {
     stage('Install Go and Snyk CLI') {
