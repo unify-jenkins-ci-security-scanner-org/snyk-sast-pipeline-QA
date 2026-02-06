@@ -99,14 +99,7 @@ EOF
         '''
       }
     }
-
-    stage('Display SARIF Report') {
-      steps {
-        sh 'cat snyk-results.sarif'
-      }
-    }
-  }
-  stage('Security Scan') {
+    stage('Security Scan') {
             steps {
                 registerSecurityScan(
                     // Security Scan to include
@@ -117,9 +110,16 @@ EOF
             }
         }
 
-  post {
-    always {
-      archiveArtifacts artifacts: 'snyk-results.sarif', fingerprint: true
+    stage('Display SARIF Report') {
+      steps {
+        sh 'cat snyk-results.sarif'
+      }
     }
   }
+
+  // post {
+  //   always {
+  //     archiveArtifacts artifacts: 'snyk-results.sarif', fingerprint: true
+  //   }
+  // }
 }
